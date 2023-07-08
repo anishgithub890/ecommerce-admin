@@ -33,7 +33,7 @@ export const StoreModal = () => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     // TODO: create store
-    console.log(values);
+    console.log({ values });
   };
 
   return (
