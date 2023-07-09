@@ -9,8 +9,8 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-  title: 'Ecommerce Dashboard',
-  description: 'Ecommerce admin dashboard',
+  title: 'Dashboard Admin',
+  description: 'e-commerce admin dashboard',
 };
 
 export default function RootLayout({
