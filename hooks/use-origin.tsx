@@ -15,5 +15,5 @@ export const useOrigin = () => {
     return '';
   }
 
-  return null;
+  return origin;
 };
