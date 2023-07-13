@@ -38,7 +38,7 @@ export const ApiAlert: React.FC<ApiAlertProps> = ({
     );
     setTimeout(() => {
       setButtonIcon(initialIcon);
-    }, 1000); // 👈️ change icon back after 1 second
+    }, 1000); // 👈 change icon back after 1 second
 
     navigator.clipboard.writeText(description);
     toast.success('API Route copied to the clipboard.');
