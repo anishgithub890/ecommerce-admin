@@ -1,11 +1,12 @@
 'use client';
 
-import { Copy, Server } from 'lucide-react';
+import { ClipboardCheckIcon, Copy, Server } from 'lucide-react';
 import { toast } from 'react-hot-toast';
 
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Badge, BadgeProps } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { useState } from 'react';
 
 interface ApiAlertProps {
   title: string;
@@ -28,10 +29,21 @@ export const ApiAlert: React.FC<ApiAlertProps> = ({
   description,
   variant = 'public',
 }) => {
+  const initialIcon = <Copy className="h-4 w-4 transition" />;
+  const [buttonIcon, setButtonIcon] = useState(initialIcon);
+
   const onCopy = () => {
+    setButtonIcon(
+      <ClipboardCheckIcon className="h-4 w-4 transition text-green-600" />
+    );
+    setTimeout(() => {
+      setButtonIcon(initialIcon);
+    }, 1000); // 👈️ change icon back after 1 second
+
     navigator.clipboard.writeText(description);
     toast.success('API Route copied to the clipboard.');
   };
+
   return (
     <Alert>
       <Server className="h-4 w-4" />
@@ -44,7 +56,7 @@ export const ApiAlert: React.FC<ApiAlertProps> = ({
           {description}
         </code>
         <Button variant="outline" size="icon" onClick={onCopy}>
-          <Copy className="h-4 w-4" />
+          {buttonIcon}
         </Button>
       </AlertDescription>
     </Alert>
