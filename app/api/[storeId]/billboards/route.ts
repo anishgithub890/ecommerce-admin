@@ -9,12 +9,13 @@ export async function POST(
 ) {
   try {
     const { userId } = auth();
+
     const body = await req.json();
 
     const { label, imageUrl } = body;
 
     if (!userId) {
-      return new NextResponse('Unauthenticated', { status: 401 });
+      return new NextResponse('Unauthenticated', { status: 403 });
     }
 
     if (!label) {
@@ -26,7 +27,7 @@ export async function POST(
     }
 
     if (!params.storeId) {
-      return new NextResponse('Store Id is required', { status: 400 });
+      return new NextResponse('Store id is required', { status: 400 });
     }
 
     const storeByUserId = await prismadb.store.findFirst({
@@ -37,7 +38,7 @@ export async function POST(
     });
 
     if (!storeByUserId) {
-      return new NextResponse('Unauthorized', { status: 403 });
+      return new NextResponse('Unauthorized', { status: 405 });
     }
 
     const billboard = await prismadb.billboard.create({
@@ -61,7 +62,7 @@ export async function GET(
 ) {
   try {
     if (!params.storeId) {
-      return new NextResponse('Store Id is required', { status: 400 });
+      return new NextResponse('Store id is required', { status: 400 });
     }
 
     const billboards = await prismadb.billboard.findMany({
