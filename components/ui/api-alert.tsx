@@ -1,6 +1,6 @@
 'use client';
 
-import { ClipboardCheckIcon, Copy, Server } from 'lucide-react';
+import { CheckCheck, Copy, Server } from 'lucide-react';
 import { toast } from 'react-hot-toast';
 
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
@@ -33,9 +33,7 @@ export const ApiAlert: React.FC<ApiAlertProps> = ({
   const [buttonIcon, setButtonIcon] = useState(initialIcon);
 
   const onCopy = () => {
-    setButtonIcon(
-      <ClipboardCheckIcon className="h-4 w-4 transition text-green-600" />
-    );
+    setButtonIcon(<CheckCheck className="h-5 w-5 transition text-green-600" />);
     setTimeout(() => {
       setButtonIcon(initialIcon);
     }, 1000); // 👈 change icon back after 1 second
