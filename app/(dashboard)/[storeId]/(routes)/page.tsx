@@ -5,13 +5,14 @@ import { Separator } from '@/components/ui/separator';
 import { formatter } from '@/lib/utils';
 import prismadb from '@/lib/prismadb';
 import { getTotalRevenue } from '@/actions/get-total-revenue';
+import { getSalesCount } from '@/actions/get-sales-count';
 
 interface DashboardPageProps {
   params: { storeId: string };
 }
 const DashboardPage: React.FC<DashboardPageProps> = async ({ params }) => {
   const totalRevenue = await getTotalRevenue(params.storeId);
-  const salesCount = () => {};
+  const salesCount = await getSalesCount(params.storeId);
   const stockCount = () => {};
   return (
     <div className="flex-col">
@@ -38,7 +39,7 @@ const DashboardPage: React.FC<DashboardPageProps> = async ({ params }) => {
               <CreditCard className="w-4 h-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">+30</div>
+              <div className="text-2xl font-bold">+{salesCount}</div>
             </CardContent>
           </Card>
           <Card>
