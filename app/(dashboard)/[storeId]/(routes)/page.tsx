@@ -4,6 +4,7 @@ import { Heading } from '@/components/ui/heading';
 import { Separator } from '@/components/ui/separator';
 import { formatter } from '@/lib/utils';
 import prismadb from '@/lib/prismadb';
+import { getTotalRevenue } from '@/actions/get-total-revenue';
 
 interface DashboardPageProps {
   params: { storeId: string };
@@ -26,7 +27,9 @@ const DashboardPage: React.FC<DashboardPageProps> = async ({ params }) => {
               <DollarSign className="w-4 h-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{formatter.format(100)}</div>
+              <div className="text-2xl font-bold">
+                {formatter.format(totalRevenue)}
+              </div>
             </CardContent>
           </Card>
           <Card>
